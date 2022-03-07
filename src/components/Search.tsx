@@ -1,7 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { SocketContext } from '../App';
-
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 
 
 import _ from 'lodash';
@@ -18,7 +16,7 @@ import Loading from './Loading';
 import ImgWithSkeleton from './ImgWithSkeleton';
 
 import Search from '../api/search';
-import { baseURL } from '../constant/parameter';
+import Channel from '../api/channel';
 
 
 export default function Library() {
@@ -70,7 +68,7 @@ export default function Library() {
 
                                                     <CardActionArea onClick={() => navigate(`/watch/${info.id}`)}>
 
-                                                        <ImgWithSkeleton height={300 / 1.3} src={`${baseURL}/api/channel/video/cover/${info.id}`} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
+                                                        <ImgWithSkeleton height={300 / 1.3} src={Channel.GetVideoCover(info.id)} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
 
                                                         <CardContent sx={{ height: 50 }}>
 

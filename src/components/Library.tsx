@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import ImgWithSkeleton from './ImgWithSkeleton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Channel from '../api/channel';
-import { baseURL } from '../constant/parameter';
+
 
 
 export default function Library() {
@@ -68,13 +68,14 @@ export default function Library() {
                                                 <DeleteIcon />
                                             </IconButton>
                                         }
-                                        title={<Typography gutterBottom variant='subtitle1' component="div" align='left' noWrap>
+                                        sx={{ height: 50 }}
+                                        title={<Typography gutterBottom variant='subtitle1' component="div" align='left'>
                                             {info.title}
                                         </Typography>}
                                     />
                                     <CardActionArea onClick={() => navigate(`/watch/${info.hash}`)}>
 
-                                        <ImgWithSkeleton height={300 / 1.3} src={`${baseURL}/api/channel/video/cover/${info.hash}`} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
+                                        <ImgWithSkeleton height={300 / 1.3} src={Channel.GetVideoCover(info.hash)} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
 
                                         <CardContent sx={{ height: 50 }}>
 

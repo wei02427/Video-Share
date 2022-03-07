@@ -100,7 +100,7 @@ export default function Library() {
 
                                         <CardContent sx={{ height: 50 }}>
 
-                                            <Typography gutterBottom variant='subtitle1' component="div" align='left'>
+                                            <Typography gutterBottom variant='subtitle1' component="div" align='left' noWrap >
                                                 {info.title}
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary" align='left' noWrap>

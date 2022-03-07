@@ -96,7 +96,7 @@ export default function Upload() {
     };
 
     const onUploadProgress = (data: any) => {
-        setProgress(Math.round(data.loaded / data.total) * 25)
+        setProgress(Math.round(data.loaded / data.total * 25))
     }
 
 
@@ -241,7 +241,7 @@ export default function Upload() {
                                     <Typography gutterBottom variant='subtitle1' component="div" align='left'>
                                         {title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary" align='left' noWrap>
+                                    <Typography variant="body2" color="text.secondary" align='left' >
                                         {description}
                                     </Typography>
                                 </CardContent>

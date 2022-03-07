@@ -1,1 +1,1 @@
-export const baseURL = 'http://localhost:3000';
+export const baseURL = process.env.NODE_ENV === 'production' ? "https://videoshareapi.hopto.org" : "http://localhost:3000";

@@ -20,7 +20,7 @@ import Search from './components/Search';
 
 
 import Account from './api/account';
-
+import { baseURL } from './constant/parameter';
 const defaultSocket = { socket: undefined, setSocket: (socket: Socket) => { }, resetSocket: () => { }, connectSocket: (userName: string) => { } };
 export const SocketContext = createContext<{ socket: Socket | undefined, setSocket: (socket: Socket) => void, resetSocket: () => void, connectSocket: (userName: string) => void }>(defaultSocket);
 export const LogInContext = createContext(false);
@@ -33,7 +33,7 @@ function App() {
   const [userName, setUserName] = useState('');
 
   const connectSocket = (username: string) => {
-    const newSocket = io('http://localhost:3000', { withCredentials: true });
+    const newSocket = io(baseURL, { withCredentials: true });
     newSocket.emit('new_socket');
     setSocket(newSocket);
     setUserName(username)

@@ -12,7 +12,7 @@ import ImgWithSkeleton from './ImgWithSkeleton';
 
 import _ from 'lodash';
 import Search from '../api/search';
-import { baseURL } from '../constant/parameter';
+import Channel from '../api/channel';
 
 export default function Index() {
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function Index() {
                                     <Card sx={{ width: 345 }}>
                                         <CardActionArea onClick={() => navigate(`/watch/${info.hash}`)}>
 
-                                            <ImgWithSkeleton height={345 / 1.3} src={`${baseURL}/api/channel/video/cover/${info.hash}`} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
+                                            <ImgWithSkeleton height={345 / 1.3} src={Channel.GetVideoCover(info.hash)} imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} index={index} />
 
                                             <CardContent>
                                                 <Typography gutterBottom variant='subtitle1' component="div" align='left'>

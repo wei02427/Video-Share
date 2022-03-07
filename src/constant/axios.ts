@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import { baseURL } from "./parameter";
 const api = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? "https://videoshareapi.hopto.org" : "http://localhost:3000",
+    baseURL: baseURL,
     withCredentials: true
 });
 

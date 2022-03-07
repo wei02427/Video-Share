@@ -56,7 +56,7 @@ export default function Video() {
         responsive: true,
         fluid: true,
         sources: [{
-            src: `${baseURL}/api/channel/watch/${vid}/playlist.mpd`,
+            src: Channel.GetPlayListMPD(vid!),
             type: 'application/dash+xml'
         }],
 
