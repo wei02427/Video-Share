@@ -11,6 +11,7 @@ import Container from '@mui/material/Container';
 import Header from './components/Header';
 import Index from './components/Index';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Video from './components/Video';
 import RequireAuth from './components/RequireAuth';
 import Channel from './components/Channel';
@@ -61,6 +62,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="signIn" element={<SignIn />} />
+              <Route path="signUp" element={<SignUp />} />
               <Route path="watch/:vid" element={<Video />} />
               <Route path="user/:channel" element={<User />} />
               <Route path="search/:keyword" element={<Search />} />

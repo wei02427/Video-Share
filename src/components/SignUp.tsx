@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SocketContext } from '../App';
 import _ from 'lodash';
 
@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -17,21 +17,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Account from '../api/account';
-import Channel from '../api/channel';
-
 
 const theme = createTheme();
 
-type stateType = {
-  from: string | undefined,
-  action: string | undefined,
-  payload: any
-}
 
 export default function SignIn() {
 
   const navigate = useNavigate();
-  const location = useLocation();
+
   const { connectSocket } = useContext(SocketContext);
 
 
@@ -40,28 +33,14 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
 
-    const email = data.get('email')!.toString(), password = data.get('password')!.toString();
+    const name = data.get('name')!.toString(), email = data.get('email')!.toString(), password = data.get('password')!.toString();
 
-    const result = await Account.Login(email, password);
+    const result = await Account.Register(name, email, password);
 
-    if (result.status === 200) {
+    if (result.status === 201) {
       connectSocket(result.data.data.name);
 
-      if (_.isNull(location.state))
-        navigate('/');
-
-      const { from, action, payload } = location.state as stateType;
-
-      switch (action) {
-        case 'subscribe':
-          await Channel.Subscribe(payload?.channel);
-          break;
-
-        default:
-          break;
-      }
-
-      navigate(from ? from : '/');
+      navigate('/');
     }
   };
 
@@ -81,9 +60,19 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign Up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              autoFocus
+            />
             <TextField
               margin="normal"
               required
@@ -111,12 +100,12 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item>
-                <Button onClick={() => navigate('/signUp')} variant="text">
-                  {"還沒有帳號嗎 ?"}
+              <Button onClick={() => navigate('/signIn')} variant="text">
+                  {"已經有帳號了 ?"}
                 </Button>
               </Grid>
             </Grid>
