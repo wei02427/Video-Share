@@ -6,7 +6,7 @@
 ### 此專案是為了練習
     - 網頁影片串流
     - 網站通知
-## 用了
+## 運用了
     - React
     - Typescript
     - Video.js
